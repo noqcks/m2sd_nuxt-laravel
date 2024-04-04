@@ -222,7 +222,7 @@ const laravelModule: Module<Options> = function (overwrites) {
         logger.debug(`Laravel url: ${laravelUrl.href}`)
 
         try {
-          const server = execa(
+          const server = execa.command(
             `php artisan serve --host=${
               laravelUrl.hostname === 'localhost' ? '127.0.0.1' : laravelUrl.hostname
             } --port=${laravelUrl.port}`, 
