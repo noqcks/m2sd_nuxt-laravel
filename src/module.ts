@@ -222,7 +222,7 @@ const laravelModule: Module<Options> = function (overwrites) {
         logger.debug(`Laravel url: ${laravelUrl.href}`)
 
         try {
-          const server = execa({stdout: 'inherit', stderr: 'inherit', env: {
+          const server = await execa({stdout: 'inherit', stderr: 'inherit', env: {
               ...process.env,
               [laravelAppEnv]: nuxtUrl.origin,
               [nuxtOutputEnv]: nuxtUrl.href,
