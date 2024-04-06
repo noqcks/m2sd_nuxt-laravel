@@ -222,17 +222,11 @@ const laravelModule: Module<Options> = function (overwrites) {
         logger.debug(`Laravel url: ${laravelUrl.href}`)
 
         try {
-          const server = execa(`php artisan serve --host=${laravelUrl.hostname === 'localhost' ? '127.0.0.1' : laravelUrl.hostname} --port=${laravelUrl.port}`, {
-            cwd: config.laravel.root,
-            // forward render path and baseUrl as env variables
-            env: {
+          const server = execa({stdout: 'inherit', stderr: 'inherit', env: {
               ...process.env,
               [laravelAppEnv]: nuxtUrl.origin,
               [nuxtOutputEnv]: nuxtUrl.href,
-            },
-            stderr: process.stderr,
-            stdout: process.stdout,
-          })
+            }})`php artisan serve --host=${laravelUrl.hostname === 'localhost' ? '127.0.0.1' : laravelUrl.hostname} --port=${laravelUrl.port}`
 
           /* istanbul ignore next */
           server.on('error', () => {
