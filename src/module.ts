@@ -223,8 +223,7 @@ const laravelModule: Module<Options> = function (overwrites) {
 
         try {
           const server = await execa({
-              stdout: 'inherit',
-              stderr: 'inherit',
+              stdio: 'inherit',
               env: {
                 ...process.env,
                 [laravelAppEnv]: nuxtUrl.origin,
