@@ -232,7 +232,7 @@ const laravelModule: Module<Options> = function (overwrites) {
             },
             stderr: process.stderr,
             stdout: process.stdout,
-          }).stdout.pipe(process.stdout)
+          })
 
           /* istanbul ignore next */
           server.on('error', () => {
